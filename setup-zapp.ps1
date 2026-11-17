@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop"
 $g = "https://graph.microsoft.com/v1.0"
 
-# Rollen der ZAPP. fedorov@dihag.com ist bewusst NICHT hier -> einfacher Nutzer.
+# Rollen der ZAPP. Das persoenliche Konto der IT-Leitung ist bewusst NICHT hier -> einfacher Nutzer.
 $CoEmail    = "compliance@dihag.com"     # Compliance Officer: Stufe-2-Genehmigung + Benachrichtigungen
 $AdminEmail = "administrator@dihag.com"  # Administrator (Einstellungen) + Vertreter (anmeldefaehiger Ersatz-Genehmiger)
 
@@ -67,7 +67,7 @@ $zappDefs = @(
 )
 Ensure-Columns "ZAPP" $zappDefs
 
-# --- Konfig-Zeilen anlegen (CO/Vertreter vorerst = fedorov@dihag.com) ------
+# --- Konfig-Zeilen anlegen (CO/Vertreter vorerst = persoenliches Konto der IT-Leitung) ------
 $rows = (Invoke-MgGraphRequest -Method GET -Uri "$g/sites/$sid/lists/ZAPP_Konfiguration/items?expand=fields&`$top=50").value
 $titles = @($rows | ForEach-Object { $_.fields.Title })
 
